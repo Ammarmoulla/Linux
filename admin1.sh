@@ -54,4 +54,16 @@ mount /dev/sdb1 /media # mount partation sdb1
 unmount /media # remove unmount by mount point
 unmount /dev/sdb1 # remove unmount by dev
 blkid # show all partation and his uuid with type
-mount uuid="____________" # the best because partation has uniqe 
+mount uuid="____________" # the best because partation has uniqe uuid
+umount uuid="____________"
+cat /etc/fstab # fstab is config file contain all partartion that auto mount when boot or reboot machine
+echo "/dev/sdb1 /work ext4 rw,exec 0 0" >> /etc/fstab #sytnux mount partation in fstab partation mount_point filesystem mount_options dump_order check_order
+mount -a # mount all partations are written in /etc/fstab and check no error in syntex format
+cat /etc/mtab # mtab is config file contain all partation that mount when boot machine
+
+
+#zip and unzip
+tar cvfz test.tar.gz * #gzip
+tar xvfz test.tar.gz   #gunzip
+tar xvfj test.tar.bz2 *  #bzip2
+tar xvfj test.tar.bz2 #bunzip2
