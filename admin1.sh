@@ -70,6 +70,8 @@ tar xvfj test.tar.bz2 #bunzip2
 
 #Process Mangment
 ps aux # show all process on system and detials for each process
+ps -ef # show pid and ppid for process
+pgrep firefox # search about pid using name process
 kill -l # show all signals in system with number
 kill 3456 # termiante process using PID with singel default SIGTERM 
 kill -9 3456 #  destroy process using PID with singel SIGKILL
@@ -77,4 +79,4 @@ command & # run command in back
 ls & # run command ls in back
 jobs # show all process that work in back
 fg %id # retrive process (using id) work in back or ouptut show message "[1] + Stopped"
-bg %id # retrive process (using id) work in forword or ouptut show message "[1] + Stopped"
+bg %id # retrive process (using id) work in forword
