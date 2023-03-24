@@ -80,3 +80,7 @@ ls & # run command ls in back
 jobs # show all process that work in back
 fg %id # retrive process (using id) work in back or ouptut show message "[1] + Stopped"
 bg %id # retrive process (using id) work in forword
+top
+nice -n 15 firefox # change priority process down
+renice -n 15 1345 # change priority process down using PID with process runs
+
