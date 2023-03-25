@@ -84,3 +84,15 @@ top
 nice -n 15 firefox # change priority process down
 renice -n 15 1345 # change priority process down using PID with process runs
 
+#searching
+whereis command # give location command and doc for command 
+find /etc -iname network #find all path contain network using name and disble sensetive sush as network Network
+find /train -name network -type d # find only dirs (using type) contain network
+find /train -iname network -exec cp -r {} /code \; #find all files and dir contain network and copy to work dir using command(exec)
+grep rock /home/ali/file1.txt # find rows contain rock word in file1.txt 
+grep -i rock /home/ali/file1.txt  # find rows contain(rock, Rock, ROck..) word  in file1.txt --> disble sensetive charcater
+grep -n root file1.txt # find number rows  contain root word in file1.txt
+grep -v rock file1.txt # find rows dont contain rock word in file1.txt 
+cut -f 1,7 -d : file1.txt # output col 1 and 7 in file1 using parameter number field and determiner(:)
+cut -f 4 -d : file1.txt | sort -n # output col 1 and 7 in file1 and sort numerical
+cut -f 4 -d : file1.txt | sort -n | uniq  # output unique col 1 and 7 in file1 and sort numerical 
