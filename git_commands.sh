@@ -18,4 +18,12 @@ git add -- . :^README.md ## add all files without except some files
 #add file to last commit
 git add README.md
 git commit --amend --no-edit
-git push -f origin master
+git push -f origin main
+
+
+#merge with master
+git push origin graphql
+git checkout main
+git pull origin main
+git merge graphql
+git push origin main
