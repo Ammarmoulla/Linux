@@ -28,6 +28,17 @@ git pull origin main
 git merge graphql
 git push origin main
 
-
 #ssh with github
 ssh-keygen -t ed25519 -C "your_email@example.com" # using ed25519
+
+#move new update from main to old branch(dev) and fix conflicts
+git checkout dev
+git merge main
+git status # to show conflict file
+git add file1 file2 ...
+git commit -m "reslove ..."
+git push origin dev
+
+
+#stop merge
+git merge --abort
