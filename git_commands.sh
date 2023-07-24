@@ -15,6 +15,10 @@ git config --global user.email "ammarturing@gmail.com"
 #git_add
 git add -- . :^README.md ## add all files without except some files
 
+#git add all folder expect folder or more
+git add --all
+git reset foldername
+
 #add file to last commit
 git add README.md
 git commit --amend --no-edit
@@ -42,3 +46,6 @@ git push origin dev
 
 #stop merge
 git merge --abort
+
+#move main branch to new branch
+git rebase main #change only name
