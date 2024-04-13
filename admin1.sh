@@ -85,6 +85,7 @@ nice -n 15 firefox # change priority process down
 renice -n 15 1345 # change priority process down using PID with process runs
 
 #searching
+
 whereis command # give location command and doc for command 
 find /etc -iname network #find all path contain network using name and disble sensetive sush as network Network
 find /train -name network -type d # find only dirs (using type) contain network

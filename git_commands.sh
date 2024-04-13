@@ -49,3 +49,7 @@ git merge --abort
 
 #move main branch to new branch
 git rebase main #change only name
+
+
+#How to fix Git warning: LF will be replaced by CRLF
+git config --global core.autocrlf true
