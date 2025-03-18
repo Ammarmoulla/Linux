@@ -49,3 +49,39 @@ git merge --abort
 
 #move main branch to new branch
 git rebase main #change only name
+
+#pull 
+git checkout master
+git checkout -B dev origin/dev
+
+
+#
+git reset HEAD^ --soft #(Save your changes, back to last commit)
+git reset HEAD^ --hard #(Discard changes, back to last commit)
+
+
+
+git push origin -d remote_branch
+git branch -D local_branch # use -D instead d to force deleting the branch without checking merged status
+
+
+
+git clone --single-branch -b wav2vecbert --depth 1 git@git.infostrategic.com:stt-tts/stt.git
+
+
+git pull --rebase --autostash
+
+
+#copy file from anthor barnch
+git checkout target-branch
+git show source-branch:path/to/file > path/to/file
+git show id_commit:split_large_text.py > testinnnnnnng.py;
+
+git config --global credential.helper store
+
+
+git log --oneline
+git log --graph --oneline --decorate --all
+
+git checkout llm
+git merge main

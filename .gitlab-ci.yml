@@ -1,0 +1,52 @@
+stages:
+  - build_nextjs
+  - build_camunda
+  - deploy
+
+
+before_script:
+  - docker login -u "$DOCKER_HUB_USERNAME" --password "$DOCKER_HUB_PASSWORD" $DOCKER_HUB_REGISTRY
+  - export NEW_IMG_NEXTJS="$DOCKER_HUB_REGISTRY/$DOCKER_IMG_NEXTJS:$CI_COMMIT_SHORT_SHA"
+  - export NEW_IMG_CAMUNDA="$DOCKER_HUB_REGISTRY/$DOCKER_IMG_CAMUNDA:$CI_COMMIT_SHORT_SHA"
+  - cp "$Nextjs_Env_File"  .env
+  - cp "$Camunda_Env_File" .env.camunda
+
+
+build_nextjs_job:
+  stage: build_nextjs
+  script:
+    - COMPOSE_BAKE=true docker compose -f app.yml build nextjs
+    - docker tag nextjs:latest $NEW_IMG_NEXTJS
+    - docker push $NEW_IMG_NEXTJS
+  only:
+    # - runner-test
+    - merge_requests
+
+
+build_camunda_job:
+  stage: build_camunda    
+  script:
+    - COMPOSE_BAKE=true docker compose -f app.yml build camunda
+    - docker images 
+    - docker tag camunda:latest $NEW_IMG_CAMUNDA
+    - docker push $NEW_IMG_CAMUNDA
+  only:
+    # - runner-test
+    - merge_requests
+
+
+deploy_job:
+  stage: deploy
+  script:
+    - git clone https://gitlab-ci-token:${GITLAB_TOKEN}@git.infostrategic.com/gitops/pmo-k3.git
+    - cd pmo-k3
+    - echo ${NEW_IMG_NEXTJS}
+    - echo ${NEW_IMG_CAMUNDA}
+    - git checkout argocd && cd manifest
+    - sed -i "s|^\(\s*image:\s*\).*|\1${NEW_IMG_NEXTJS}|"  nextjs-deploy.yaml
+    - sed -i "s|^\(\s*image:\s*\).*|\1${NEW_IMG_CAMUNDA}|" camunda-deploy.yaml
+    - git add . && git commit -am "Add new build ${CI_COMMIT_SHORT_SHA}"
+    - git push origin argocd
+  only:
+    # - runner-test
+    - merge_requests

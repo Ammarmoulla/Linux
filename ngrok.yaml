@@ -1,0 +1,17 @@
+region: us
+version: '2'
+authtoken: 2h5rVSeAurc546oYtxtKW6mxEWB_4oxF8rzuuX1RZCfsApbbd
+tunnels:
+    stt:
+        addr: 5030
+        proto: http
+        #basic_auth:
+        #  - Ammar:password1
+    tts:
+        proto: http
+        addr: 5040
+        
+    tensorboard_tts:
+        proto: http
+        addr: 5041
+
