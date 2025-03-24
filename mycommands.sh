@@ -295,3 +295,8 @@ docker compose -f jibri.yml up --scale jibri=7 -d
 docker exec videorecording-jibri-1 sed -i 's/Loopback/0/g' /home/jibri/.asoundrc && docker exec videorecording-jibri-2 sed -i 's/Loopback/1/g' /home/jibri/.asoundrc && docker exec videorecording-jibri-3 sed -i 's/Loopback/2/g' /home/jibri/.asoundrc && docker exec videorecording-jibri-4 sed -i 's/Loopback/3/g' /home/jibri/.asoundrc && docker exec videorecording-jibri-5 sed -i 's/Loopback/4/g' /home/jibri/.asoundrc && docker exec videorecording-jibri-6 sed -i 's/Loopback/5/g' /home/jibri/.asoundrc && docker exec videorecording-jibri-7 sed -i 's/Loopback/6/g' /home/jibri/.asoundrc
 docker compose -f jibri.yml restart
 ls -alh /proc/asound 
+
+
+/usr/bin/certbot --nginx certonly --dry-run --agree-tos -d  call.ripplez.ae && /usr/bin/certbot certonly --nginx --keep --agree-tos -m ammar.moulla@example.com -d  call.ripplez.ae
+ln -s /etc/nginx/sites-available/call.ripplez.ae /etc/nginx/sites-enabled/call.ripplez.ae
+/usr/sbin/nginx -t && /usr/sbin/nginx -s reload
